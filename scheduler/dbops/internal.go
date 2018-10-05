@@ -10,7 +10,7 @@ import (
 // executer -> datachannel -> videoid-> delete videos
 
 func ReadVideoDeletionRecord(count int) ([]string, error) {
-	stmtOut, err := dbConn.Prepare("SELECT video_id FROM video_iel_rec LIMIT ?")
+	stmtOut, err := dbConn.Prepare("SELECT video_id FROM video_del_rec LIMIT ?")
 
 	var ids []string
 

@@ -10,10 +10,15 @@ import (
 
 func deleteVideo(vid string) error {
 	err := os.Remove(VIDEO_PATH + vid)
-	if err != nil && os.IsNotExist(err) {
+	if err != nil && !os.IsNotExist(err) {
 		log.Printf("Deleting video error: %v", err)
 		return err
 	}
+
+	if err == nil {
+		log.Printf("Removed: %s", VIDEO_PATH + vid)
+	}
+
 	return nil
 }
 
@@ -55,9 +60,9 @@ forloop:
 			break forloop
 		}
 	}
-	errMap.Range(func(k,v interface{}) bool{
+	errMap.Range(func(k, v interface{}) bool {
 		err := v.(error)
-		if err!=nil{
+		if err != nil {
 			return false
 		}
 		return true
