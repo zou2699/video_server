@@ -23,7 +23,7 @@ func deleteExpiredSession(sid string) {
 	sessionMap.Delete(sid)
 	dbops.DeleteSession(sid)
 }
-func LoadSessionsFronDB() {
+func LoadSessionsFromDB() {
 	r, err := dbops.RetrieveAllSessions()
 	if err != nil {
 		return

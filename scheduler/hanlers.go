@@ -10,7 +10,7 @@ func vidDelRecHandler(w http.ResponseWriter, r *http.Request, p httprouter.Param
 	vid := p.ByName("vid-id")
 
 	if len(vid) == 0 {
-		sendResponse(w, 400, "video is should not be emtpy")
+		sendResponse(w, 400, "video is should not be empty")
 		return
 	}
 

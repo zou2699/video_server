@@ -66,16 +66,16 @@ func RetrieveAllSessions() (*sync.Map, error) {
 	}
 	for rows.Next() {
 		var (
-			id         string
-			ttlstr     string
-			login_name string
+			id        string
+			ttlstr    string
+			loginName string
 		)
-		if err := rows.Scan(&id, &ttlstr, &login_name); err != nil {
+		if err := rows.Scan(&id, &ttlstr, &loginName); err != nil {
 			log.Printf("retrieve sessions err: %s", err)
 			break
 		}
 		if ttl, err := strconv.ParseInt(ttlstr, 10, 64); err == nil {
-			ss := &defs.SimpleSession{Username: login_name, TTL: ttl}
+			ss := &defs.SimpleSession{Username: loginName, TTL: ttl}
 			m.Store(id, ss)
 			log.Printf("session id: %s, ttl: %d", id, ss.TTL)
 		}
